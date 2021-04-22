@@ -1,0 +1,4 @@
+::after {
+    visibility: hidden;
+    /* Esto se tiene que manter asi para que no aparezca la flecha del nav-bar */
+}
