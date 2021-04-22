@@ -1,0 +1,14 @@
+{{!-- Lista de escaladores --}}
+<h1>Climbing List</h1>
+<a href="/search">Buscar</a>
+<a href="/climbers/create">Crear un nuevo Usuario</a>
+
+{{#each climbers}} {{!--Recorremos el array de climbers e imprimimos el nombre. --}}
+<h3>{{name}}</h3>
+<a href="/climbers/{{id}}">Info escalador</a> {{!-- En este enlace ira al id de cada escalador--}}
+<a href="/climbers/{{id}}/edit">Editar</a> {{!-- En este enlace ira al id de cada escalador--}}
+<form action="/climbers/{{id}}/delete" method="POST">
+<button type="submit">Eliminar</button>
+</form>
+<hr>
+{{/each}}

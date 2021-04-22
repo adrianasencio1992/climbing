@@ -1,0 +1,22 @@
+{{!-- Formulario para editar un usuario --}}
+<h1>Editar Usuario</h1>
+{{!-- action: es la ruta que va a recojer este formulario y el metodo no es get es post, porque los datos se mandan a traves de un post. y nos llegan los datos como un objeto. --}}
+<form action="/climbers/{{climber.id}}/edit" method="POST"> 
+<label for="climber-name">Nombre:</label>
+<input type="text" name="name" value="{{climber.name}}"> {{!-- Muestra el valor por defecto --}}
+
+<label for="climber-age">Edad:</label>
+<input type="number" name="age" value="{{climber.age}}">
+
+<label for="climber-description">Descripción:</label>
+<input type="text" name="description" value="{{climber.description}}">
+
+<label for="climber-city">Ciudad:</label>
+<input type="text" name="city" value="{{climber.city}}">
+
+<button type="submit">Editar</button>
+</form>
+
+{{#if error}}
+<p>Ha ocurrido un error</p>
+{{/if}}

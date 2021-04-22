@@ -1,0 +1,24 @@
+{{!-- Formulario para crear un usuario --}}
+<h1>Crear Usuario</h1>
+{{!-- action: es la ruta que va a recojer este formulario y el metodo no es get es post, porque los datos se mandan a traves de un post. y nos llegan los datos como un objeto. --}}
+<form action="/climbers/create" method="POST">
+<label for="climber-name">Nombre:</label>
+<input type="text" name="name">
+
+<label for="climber-age">Edad:</label>
+<input type="number" name="age">
+
+<label for="climber-description">Descripción:</label>
+<input type="text" name="description">
+
+<label for="climber-city">Ciudad:</label>
+<input type="text" name="city">
+
+<button type="submit">Crear</button>
+</form>
+
+{{#if error}}
+<p>Ha ocurrido un error</p>
+{{/if}}
+{{!-- Se tiene que crear igual los formularios que los modelos que queremos construir. 
+Ej : name="name" debe estar tambien en el modelo Climber.model en el esquema. --}}

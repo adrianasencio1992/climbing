@@ -1,0 +1,89 @@
+CREAR NUESTRO PRIMER SERVIDOR OPERATIVO PASO A PASO 
+SERVIDOR MOONGOOSE - EXPRESS - CRUD
+
+1- PRIMERO DEBEMOS DEBEMOS HACER UN NPM INIT --Y
+
+2- DESCARGAR LOS PAQUETES QUE QUEREMOS POR 
+EJEMPLO NPM I MONGOOSE HBS NODEMON EXPRESS
+
+3- ABRIMOS EL VISUAL STUDIO CODE.
+
+4- VAMOS A PACKAGE.JSON Y MIRAMOS SI ESTAN ACTUALIZADOS LOS PAQUETES EN DEPENDENCIAS Y LUEGO VAMOS A SCRIPTS:
+
+5- "SCRIPTS" :
+    "START": "NODE APP.JS"
+    "DEV": "NODEMON APP.JS"
+
+6- Creamos un fichero app.js (será nuestra aplicación) y creamos la instancia de express y ademas creamos el puerto de escucha 3000, en este punto ya tendriamos un servidor corriendo
+
+7- Creamos las carpetas views, la carpeta public, creamos tambien .gitignore, en esta metemos node_modules y la carpeta models, en esta tendremos modelos de la base de datos.
+
+8- Dentro de la carpeta views, creamos la carpeta partials,  y dentro creamos los hbs con los componentes a reutilizar. En la carpeta public meteremos el css, las imagenes... 
+
+9- Creamos el fichero layout.hbs (este fichero sera donde tengamos nuestro codigo que queremos que se reutilice durante toda la pagina.)
+
+10- Creamos el index.hbs dentro de views.
+
+11- Vamos a app.js y creamos los middlewares.
+
+12- Crear la ruta para el index.hbs en app.js, en este punto veras que te la ruta te la encuentras comentada, es porque mas adelanta la vas a modificar y la exportaras a la carpeta routes, y alli crearas un router(explico mas adelante).
+
+13- Ir a layout y hacer la base de html y poner en body: {{{body}}} para que nuestro contenido sea igual en todas las paginas crearlo dentro de main.
+
+14- En este punto ya tendriamos el servidor creado, asi que si vamos a localhost:3000 si nada falla deberiamos ver lo que tenemos en index.hbs
+
+15- Creamos la carpeta routes, donde iran nuestras rutas, dentro crearemos un fichero que sera index.js. Tambien necesitaremos aqui express.
+
+16- Importamos el app.get y lo modificamos a router, porque ahora trabajaremos desde aqui con las rutas.
+
+17-  exportaremos el router, y lo importaremos en app.js, tambien usaremos ese router.
+
+Hasta este punto lo unico que veriamos seria lo que escribamos en index.hbs, para tener una referencia como un titulo.
+Para cada modelo de la base de datos, crearemos su propio fichero de rutas. 
+
+18- En este punto creamos data.js, en este caso en particular tendremos a todos los escaladores, a los que hacemos referencia, con sus propiedades. Aqui tambien se guardarian si se crea un nuevo escalador.
+
+19- Una vez tenemos toda la información en data, podemos crear el primer modelo, en este caso, seria Climber.model.js, primera con mayuscula y en singular. En este paso es donde requeriremos MONGOOSE.
+
+20- Debemos insertar en la base de datos, los datos con los que necesitamos trabajar en este caso seran los escaladores.Creamos en seeds.js(semilla) fuera donde esta app.js o data.js
+
+21- Una vez creado todo lo que tenemos en la semilla, vamos a nuestra terminal y ponemos node seeds.js  Al hacer esto insertarias lo que tienes en data.js, los insertas todos porque tienes el insertMany. Lo tienes que insertar cuando no esta escuchando el puerto 3000.
+
+22- En este punto si vamos a mongo Compass, veriamos nuestra aplicacion, y nuestra coleccion creada con sus respectivos documentos de escaladores.
+
+Creamos un fichero dentro de la carpeta de rutas, por cada modelo que tengamos en la base de datos.
+
+23- Creamos un climbers.js en routes y importamos el router a app.js, hacemos la constante y el app.use
+
+24- Creamos un climbers-list-hbs en views para devolver la lista de estudiantes en climbers.js
+
+25- Vamos a climbers-list.hbs y rellenamos con la informacion a mostrar, luego tenemos que ir a app.js y poner el paquete para conectarnos a la base de datos, crear el nombre de la base de datos y conectarnos a la base de datos. Una vez hecho esto si ponemos http://localhost:3000/climbers iriamos a ver la lista de escaladores.
+
+Pequeño resumen hasta ahora, el cliente toca un boton ficticio y hace la petición de http://localhost:3000/climbers a encontrado el controlador en climbers.js el controlador es express se hace una peticion con el modelo Climber.find a la base de datos y al encontrarlo a hecho un renderizado de un views que en este caso es climbers-list.hbs
+
+26- Creamos climber-details.hbs en views y aqui estara la información detallada de cada escalador, lo completamos. Y una vez completo tenemos que ir al router de climbers.js y crearemos una ruta que nos lleve a solo 1 escalador, en climbers-list.hbs le hemos hecho un enlace y tendremos que hacer el router.get en climbers.js
+
+27- Si clicamos en el enlace ya podremos acceder a la informacion de cada escalador.
+
+28- Creamos un views climber-create.hbs para poder crear escaladores.
+
+29-  En climbers.js necesitaremos 2 rutas, una que nos pinte el formulario y otra que reciba la informacion del usuario.
+
+30- Importamos un paquete que se llama npm i body-parser (esto nos permite urilizar req.body y tener alli la información. Es un middlewares asi que tendremos que hacer un app.use en app.js
+
+31- Insertar al nuevo usuario en la base de datos en climbers.js. dentro del router.post.
+
+32- En este punto ya se a insertado el nuevo usuario.
+
+33- Hasta este punto tenemos ya 2 pasos del Crud faltan otros dos, faltan editar y borrar.
+
+34- Creamos un arhivo dentro de views que se llama climber-edit.hbs, es el mismo formulario que en crear pero con algunos cambios.
+
+35- Creamos las 2 rutas que necesitamos en climbers.js, la de enviar la informacion y la recibirlo. get y post.
+
+36- Borrar, ir a climbers.js y mirar el apartado de borrar. Tambien he creado un boton en climber-list. 
+
+37- Creamos en views el fichero .env, que siempre va en el git ignore, contiene las claves de las apis de pago, contraseñas de base de datos, url base de datos.
+
+38- Creamos un search.hbs en views. Creamos un boton de busqueda y la ruta la metemos en index.js
+El boton de busqueda no esta terminado lo veremos el Lunes.
